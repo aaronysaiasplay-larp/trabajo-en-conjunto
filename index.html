@@ -1,1 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05070A">
+  <meta name="description" content="Descubre, compara y pon a prueba tus conocimientos sobre los deportivos más emocionantes del mundo.">
+  <title>Garaje Deportivo — Potencia con propósito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070A;
+      --panel: #0A1628;
+      --panel-raised: #101F35;
+      --line: rgba(192,192,192,.14);
+      --line-strong: rgba(192,192,192,.25);
+      --blue: #2E7CF6;
+      --blue-soft: rgba(46,124,246,.14);
+      --white: #fff;
+      --muted: #A1A1AA;
+      --silver: #C0C0C0;
+      --radius: 18px;
+      --content: 1180px;
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 75% 38% at 50% 0%, rgba(46,124,246,.12), transparent 100%),
+        linear-gradient(135deg, rgba(20,38,62,.07) 25%, transparent 25%, transparent 75%, rgba(20,38,62,.07) 75%),
+        linear-gradient(45deg, rgba(18,34,56,.07) 25%, transparent 25%, transparent 75%, rgba(18,34,56,.07) 75%),
+        linear-gradient(rgba(192,192,192,.008) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192,192,192,.008) 1px, transparent 1px);
+      background-size: 100% 100%, 8px 8px, 8px 8px, 64px 64px, 64px 64px;
+      background-position: center top, 0 0, 0 0, 0 0, 0 0;
+      background-repeat: no-repeat, repeat, repeat, repeat, repeat;
+      background-attachment: fixed;
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select { font: inherit; }
+    button, a, select { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
+
+    .site-header {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(5,7,10,.9);
+      backdrop-filter: blur(18px);
+    }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-family: Manrope, sans-serif; font-size: 15px; font-weight: 800; letter-spacing: -.5px; }
+    .brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border: 1px solid rgba(46,124,246,.58); border-radius: 9px; color: var(--blue); box-shadow: 0 0 16px rgba(46,124,246,.12); }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: 13px; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: white; }
+    .nav-cta { padding: 9px 14px; border: 1px solid var(--line-strong); border-radius: 10px; color: white; font-size: 12px; font-weight: 600; transition: border-color .2s, background .2s; }
+    .nav-cta:hover { border-color: var(--blue); background: var(--blue-soft); }
+
+    .hero {
+      position: relative; isolation: isolate; min-height: 630px; display: grid; align-items: center; padding: 90px 0 112px; overflow: hidden;
+      background-color: #05070A;
+      background-image:
+        linear-gradient(135deg, rgba(31,41,55,.72) 0%, rgba(17,24,39,.66) 25%, rgba(5,7,10,.35) 50%, rgba(31,41,55,.72) 75%, rgba(17,24,39,.66) 100%),
+        linear-gradient(45deg, rgba(17,24,39,.62) 0%, rgba(5,7,10,.3) 25%, rgba(31,41,55,.68) 50%, rgba(17,24,39,.62) 75%, rgba(5,7,10,.3) 100%),
+        linear-gradient(135deg, transparent 44%, rgba(46,124,246,.15) 48%, rgba(46,124,246,.04) 52%, transparent 56%);
+      background-size: 16px 16px;
+      animation: hero-carbon-drift 26s linear infinite;
+    }
+    .hero::before { position: absolute; z-index: 0; inset: 0; background: linear-gradient(90deg, rgba(5,7,10,.78), rgba(5,7,10,.48) 52%, rgba(5,7,10,.55)), linear-gradient(0deg, #05070A 0%, rgba(5,7,10,.58) 25%, rgba(5,7,10,.12) 72%, rgba(5,7,10,.38)); content: ""; }
+    .hero::after { position: absolute; z-index: 1; inset: 0 auto 0 0; width: 42%; background: linear-gradient(110deg, transparent, rgba(46,124,246,.035) 40%, rgba(46,124,246,.1) 50%, rgba(46,124,246,.035) 60%, transparent); content: ""; pointer-events: none; transform: translateX(-140%) skewX(-18deg); animation: hero-carbon-sheen 6s ease-in-out infinite; }
+    @keyframes hero-carbon-drift { to { background-position: 16px 16px, -16px 16px, 16px -16px; } }
+    @keyframes hero-carbon-sheen { 0%, 5% { opacity: 0; transform: translateX(-140%) skewX(-18deg); } 10% { opacity: .7; } 30%, 100% { opacity: 0; transform: translateX(360%) skewX(-18deg); } }
+    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; max-width: 820px; }
+    .hero-content { text-align: center; }
+    .typing-credit { min-height: 1.6em; margin: 0 0 7px; color: var(--blue); font-family: Consolas, "Courier New", monospace; font-size: clamp(12px, 1.5vw, 14px); letter-spacing: .04em; text-shadow: 0 0 14px rgba(46,124,246,.55); }
+    .typing-credit::after { display: inline-block; height: 1.1em; margin-left: 4px; border-right: 1px solid currentColor; content: ""; vertical-align: -.16em; animation: typing-cursor .8s steps(2, start) infinite; }
+    @keyframes typing-cursor { to { visibility: hidden; } }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #70a6ff; font-size: 11px; font-weight: 700; letter-spacing: 1.65px; text-transform: uppercase; }
+    .eyebrow::before { width: 23px; height: 1px; background: var(--blue); content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: Manrope, sans-serif; }
+    .hero h1 { max-width: 760px; margin: 22px auto 18px; font-size: clamp(54px, 7vw, 92px); font-weight: 700; letter-spacing: -.075em; line-height: .99; text-shadow: 0 0 38px rgba(46,124,246,.3); }
+    .hero h1 span { color: var(--blue); }
+    .hero-copy { max-width: 600px; margin: 0 auto 29px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .button-primary, .button-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 46px; padding: 0 17px; border-radius: 11px; font-size: 13px; font-weight: 700;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .button-primary { border: 1px solid var(--blue); background: var(--blue); color: #fff; box-shadow: 0 8px 28px rgba(46,124,246,.24); }
+    .button-primary:hover { transform: translateY(-2px); background: #5594ff; }
+    .button-secondary { border: 1px solid var(--line-strong); background: rgba(255,255,255,.025); color: white; }
+    .button-secondary:hover { transform: translateY(-2px); border-color: rgba(46,124,246,.78); }
+    .button-primary svg, .button-secondary svg { width: 16px; height: 16px; }
+    .hero-note { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 38px; color: #77777f; font-size: 11px; letter-spacing: .3px; }
+    .hero-note span { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 12px var(--blue); }
+    .hero-scroll { position: absolute; z-index: 2; right: 50%; bottom: 25px; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(192,192,192,.28); border-radius: 50%; color: #c9d8ee; transform: translateX(50%); animation: hero-scroll-bounce 1.8s ease-in-out infinite; }
+    .hero-scroll svg { width: 17px; height: 17px; }
+    @keyframes hero-scroll-bounce { 0%, 100% { translate: 0 0; } 50% { translate: 0 6px; } }
+
+    .section { padding: 91px 0; }
+    .section-alt { border-block: 1px solid rgba(46,124,246,.14); background: rgba(10,22,40,.72); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 29px; }
+    .section-heading h2, .quiz-intro h2 { text-shadow: 0 0 28px rgba(46,124,246,.14); }
+    .section-heading h2 { margin: 11px 0 7px; font-size: clamp(32px, 4vw, 46px); letter-spacing: -.06em; line-height: 1.1; }
+    .section-heading p { max-width: 490px; margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .section-index { color: #696970; font-family: Manrope, sans-serif; font-size: 12px; letter-spacing: 1px; white-space: nowrap; }
+
+    .gallery-tools { display: flex; align-items: center; gap: 11px; margin: 25px 0 22px; }
+    .search-wrap { position: relative; flex: 1; max-width: 355px; }
+    .search-wrap svg { position: absolute; top: 50%; left: 13px; width: 17px; height: 17px; transform: translateY(-50%); color: #777780; }
+    .search-wrap input, .filter-select, .compare-select {
+      height: 43px; border: 1px solid var(--line); border-radius: 10px; outline: none; background: #080f1c; color: white;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-wrap input { width: 100%; padding: 0 14px 0 40px; }
+    .search-wrap input::placeholder { color: #71717a; }
+    .filter-select { min-width: 145px; padding: 0 34px 0 12px; }
+    .search-wrap input:focus, .filter-select:focus, .compare-select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(46,124,246,.17); }
+    .result-count { margin-left: auto; color: var(--muted); font-size: 12px; }
+    .car-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+    .car-card { position: relative; overflow: hidden; border: 1px solid rgba(192,192,192,.18); border-radius: var(--radius); background: var(--panel); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .car-card:hover { transform: translateY(-5px); border-color: rgba(46,124,246,.68); box-shadow: 0 12px 35px rgba(0,0,0,.3), 0 0 24px rgba(46,124,246,.12); }
+    .car-open { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+    .car-open:focus-visible, .favorite-button:focus-visible { outline: 2px solid var(--blue); outline-offset: -3px; }
+    .car-photo { position: relative; height: 190px; overflow: hidden; background: #1a1a1a; }
+    .car-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease, filter .3s ease; filter: saturate(.95); }
+    .car-card:hover .car-photo img { transform: scale(1.045); filter: saturate(1.15); }
+    .car-brand { position: absolute; top: 12px; left: 12px; padding: 5px 8px; border: 1px solid rgba(255,255,255,.15); border-radius: 6px; background: rgba(10,10,11,.62); color: #e4e4e7; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; backdrop-filter: blur(8px); }
+    .car-card-body { padding: 17px 17px 15px; }
+    .car-title-row { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+    .car-title-row h3 { margin: 0; font-size: 17px; letter-spacing: -.45px; }
+    .price { color: #8bb5ff; font-size: 12px; font-weight: 700; white-space: nowrap; text-shadow: 0 0 14px rgba(46,124,246,.2); }
+    .car-subtitle { margin: 3px 0 16px; color: #a2aab8; font-size: 11px; }
+    .car-specs { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; padding-top: 13px; border-top: 1px solid var(--line); }
+    .car-specs strong { display: block; font-family: Manrope, sans-serif; font-size: 15px; font-weight: 700; }
+    .car-specs span { display: block; margin-top: 2px; color: #a2aab8; font-size: 9px; }
+    .favorite-button { position: absolute; z-index: 2; top: 11px; right: 11px; display: grid; width: 37px; height: 37px; place-items: center; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; background: rgba(10,10,10,.78); color: white; cursor: pointer; backdrop-filter: blur(9px); transition: color .2s, border-color .2s, background .2s, transform .2s; }
+    .favorite-button:hover { transform: scale(1.08); border-color: var(--blue); }
+    .favorite-button svg { width: 17px; height: 17px; }
+    .favorite-button[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
+    .favorite-button[aria-pressed="true"] svg path { fill: currentColor; }
+    .gallery-filter-favorites { display: inline-flex; height: 43px; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: #c9d1df; font-size: 12px; cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+    .gallery-filter-favorites:hover, .gallery-filter-favorites[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-soft); color: #9dc1ff; }
+    .gallery-filter-favorites svg { width: 15px; height: 15px; }
+    .brand-shortcuts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 23px; }
+    .brand-shortcuts-label { margin-right: 4px; color: var(--muted); font-size: 11px; }
+    .brand-chip { min-height: 34px; padding: 0 11px; border: 1px solid var(--line); border-radius: 9px; background: rgba(255,255,255,.025); color: #c9d1df; font-size: 11px; cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+    .brand-chip:hover, .brand-chip[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-soft); color: #69c5ff; }
+    .empty-state { grid-column: 1/-1; padding: 50px 20px; border: 1px dashed var(--line-strong); border-radius: var(--radius); color: var(--muted); text-align: center; }
+
+    .compare-panel { overflow: hidden; border: 1px solid rgba(46,124,246,.22); border-radius: 18px; background: var(--panel); box-shadow: 0 12px 42px rgba(0,0,0,.18); }
+    .compare-controls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 22px 24px; border-bottom: 1px solid var(--line); }
+    .compare-random { grid-column: 1 / -1; justify-self: center; min-height: 40px; }
+    .compare-control label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 11px; }
+    .compare-select { width: 100%; padding: 0 12px; }
+    .versus { display: grid; width: 34px; height: 34px; place-items: center; margin-top: 18px; border: 1px solid var(--line); border-radius: 50%; color: #85858d; font-size: 10px; font-weight: 700; }
+    .table-scroll { overflow-x: auto; }
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th, .compare-table td { width: 33.333%; padding: 16px 24px; border-bottom: 1px solid var(--line); text-align: left; }
+    .compare-table th { color: #dadade; font-family: Manrope, sans-serif; font-size: 13px; }
+    .compare-table thead th:first-child { color: var(--muted); font-family: "DM Sans", sans-serif; font-size: 11px; font-weight: 500; }
+    .compare-table tbody tr:last-child td { border-bottom: 0; }
+    .compare-table tbody td:first-child { color: var(--muted); font-size: 12px; }
+    .metric-value { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; }
+    .metric-value.winner { color: #8bb5ff; }
+    .winner-mark { font-size: 10px; }
+    .bar-track { height: 4px; max-width: 200px; margin-top: 8px; overflow: hidden; border-radius: 99px; background: #29292d; }
+    .bar-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #15376e, #245db5); transition: width .4s ease; }
+    .bar-fill.winner { background: linear-gradient(90deg, #2E7CF6, #17418a); box-shadow: 0 0 10px rgba(46,124,246,.55); }
+    .compare-footnote { margin: 0; padding: 13px 24px; color: #777780; font-size: 10px; }
+
+    .race-panel { position: relative; overflow: hidden; border: 1px solid rgba(46,124,246,.24); border-radius: 18px; background: var(--panel); box-shadow: 0 12px 42px rgba(0,0,0,.2); }
+    .race-controls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 18px; padding: 22px 24px; border-bottom: 1px solid var(--line); }
+    .race-control label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 11px; }
+    .race-select { width: 100%; padding: 0 12px; }
+    .race-vs { margin: 0 0 4px; }
+    .race-start { grid-column: 1 / -1; justify-self: center; min-width: 145px; }
+    .race-track-wrap { display: grid; gap: 18px; padding: 24px; }
+    .race-lane { display: grid; grid-template-columns: minmax(115px, 190px) minmax(0, 1fr) 64px; align-items: center; gap: 14px; }
+    .race-car-name { overflow: hidden; color: #e8edf5; font-size: 12px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .race-car-time { display: block; color: var(--muted); font-size: 10px; font-weight: 500; }
+    .race-track { position: relative; height: 27px; overflow: hidden; border: 1px solid rgba(192,192,192,.12); border-radius: 8px; background: repeating-linear-gradient(90deg, rgba(192,192,192,.07) 0 1px, transparent 1px 24px), #070e19; }
+    .race-progress { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #17418a, #2E7CF6 70%, #84b2ff); box-shadow: 0 0 16px rgba(46,124,246,.38); transition: width .05s linear; }
+    .race-lane:nth-child(2) .race-progress { background: linear-gradient(90deg, #34465f, #8ba9d5 70%, #d2e0f5); box-shadow: 0 0 14px rgba(192,192,192,.22); }
+    .race-finish-line { position: absolute; top: 0; right: 7px; width: 3px; height: 100%; background: repeating-linear-gradient(180deg, #fff 0 4px, #324058 4px 8px); opacity: .8; }
+    .race-status { color: #cbd9ee; font-family: Manrope,sans-serif; font-size: 11px; font-weight: 700; text-align: right; }
+    .race-result { min-height: 0; padding: 0 24px; color: #c8d7ed; font-size: 13px; text-align: center; }
+    .race-result:not(:empty) { padding: 0 24px 23px; }
+    .race-result strong { color: #8bb5ff; }
+    .race-again { display: none; margin: 0 auto 24px; }
+    .race-panel.is-finished .race-again { display: flex; }
+    #race-confetti { position: absolute; inset: 28% 0 auto; height: 0; pointer-events: none; }
+    .confetti { position: absolute; z-index: 3; top: 0; left: var(--confetti-x); width: 6px; height: 9px; border-radius: 2px; background: var(--confetti-color); opacity: 0; pointer-events: none; transform: translateY(0) rotate(0); }
+    .race-panel.is-finished .confetti { animation: confetti-fall 1.5s ease-out var(--confetti-delay) both; }
+    @keyframes confetti-fall { 0% { opacity: 0; transform: translateY(0) rotate(0); } 12% { opacity: .72; } 100% { opacity: 0; transform: translate(var(--confetti-drift), 160px) rotate(var(--confetti-rotate)); } }
+
+    .quiz-layout { display: grid; grid-template-columns: .72fr 1.28fr; align-items: start; gap: 54px; }
+    .quiz-intro { position: sticky; top: 110px; }
+    .quiz-intro h2 { margin: 13px 0; font-size: clamp(34px,4vw,48px); letter-spacing: -.065em; line-height: 1.05; }
+    .quiz-intro p { max-width: 340px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .quiz-best { display: inline-flex; align-items: center; gap: 8px; margin-top: 13px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 9px; color: #c7c7ce; font-size: 11px; }
+    .quiz-best strong { color: var(--blue); font-family: Manrope, sans-serif; }
+    .quiz-card { padding: 24px; border: 1px solid rgba(46,124,246,.22); border-radius: 18px; background: var(--panel); box-shadow: 0 12px 42px rgba(0,0,0,.18); }
+    .quiz-topline { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 11px; color: var(--muted); font-size: 11px; }
+    .quiz-progress { height: 4px; margin-bottom: 27px; overflow: hidden; border-radius: 9px; background: #29292d; }
+    .quiz-progress-fill { height: 100%; border-radius: inherit; background: var(--blue); transition: width .35s ease; }
+    .quiz-card h3 { margin-bottom: 18px; font-size: 21px; letter-spacing: -.5px; line-height: 1.4; }
+    .quiz-options { display: grid; gap: 9px; }
+    .quiz-option { width: 100%; min-height: 48px; display: flex; align-items: center; gap: 12px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.015); color: #d7d7dc; text-align: left; cursor: pointer; transition: border-color .18s, background .18s, color .18s; }
+    .quiz-option:hover:not(:disabled) { border-color: rgba(46,124,246,.68); background: rgba(46,124,246,.09); color: white; }
+    .option-letter { display: grid; width: 24px; height: 24px; flex: 0 0 24px; place-items: center; border: 1px solid var(--line-strong); border-radius: 7px; color: #a4a4ab; font-size: 10px; font-weight: 700; }
+    .quiz-option.correct { border-color: rgba(52,211,153,.55); background: rgba(52,211,153,.08); color: #c4f4e3; }
+    .quiz-option.correct .option-letter { border-color: #34d399; color: #34d399; }
+    .quiz-option.incorrect { border-color: rgba(192,192,192,.48); background: rgba(192,192,192,.06); color: #d3d9e3; }
+    .quiz-option.incorrect .option-letter { border-color: #aab8cf; color: #aab8cf; }
+    .quiz-feedback { min-height: 23px; margin: 12px 0 4px; color: var(--muted); font-size: 11px; }
+    .quiz-next-row { display: flex; justify-content: end; }
+    .quiz-next { min-height: 40px; padding-inline: 14px; border: 1px solid var(--blue); border-radius: 9px; background: var(--blue); color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; transition: background .2s, transform .2s; }
+    .quiz-next:hover { transform: translateY(-1px); background: #5594ff; }
+    .quiz-next:disabled { border-color: var(--line); background: #242428; color: #75757c; cursor: not-allowed; }
+    .quiz-result { padding: 15px 3px 3px; text-align: center; }
+    .result-score { display: grid; width: 88px; height: 88px; place-items: center; margin: 0 auto 17px; border: 1px solid rgba(46,124,246,.6); border-radius: 50%; background: var(--blue-soft); color: #8bb5ff; font-family: Manrope, sans-serif; font-size: 24px; font-weight: 800; box-shadow: 0 0 26px rgba(46,124,246,.14); }
+    .quiz-result h3 { margin-bottom: 8px; font-size: 25px; }
+    .quiz-result p { margin-bottom: 20px; color: var(--muted); }
+
+    .share-band { padding: 28px 0; border-top: 1px solid var(--line); background: rgba(10,22,40,.75); }
+    .share-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .share-row h2 { margin: 0 0 3px; font-size: 17px; letter-spacing: -.4px; }
+    .share-row p { margin: 0; color: var(--muted); font-size: 12px; }
+    .whatsapp { flex: 0 0 auto; border-color: rgba(46,124,246,.4); background: rgba(46,124,246,.1); color: #9cc0ff; }
+    .whatsapp:hover { border-color: #2E7CF6; background: rgba(46,124,246,.17); }
+    .whatsapp svg { color: #2E7CF6; }
+    footer { padding: 27px 0; color: #707078; font-size: 11px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 16px; }
+    .footer-brand { color: #bcbcc2; font-weight: 700; }
+    .footer-credit { color: #b4bdcb; }
+    .footer-credit strong { color: var(--blue); font-weight: 700; }
+    .stats-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; margin: 29px 0 7px; }
+    .stat-card { display: flex; min-height: 95px; align-items: center; gap: 14px; padding: 17px 19px; border: 1px solid rgba(46,124,246,.2); border-radius: 14px; background: linear-gradient(135deg, rgba(10,22,40,.98), rgba(7,14,25,.95)); }
+    .stat-icon { display: grid; width: 39px; height: 39px; flex: 0 0 39px; place-items: center; border: 1px solid rgba(46,124,246,.3); border-radius: 11px; background: rgba(46,124,246,.1); color: var(--blue); font-size: 17px; }
+    .stat-card:nth-child(2) .stat-icon { border-color: rgba(46,124,246,.3); background: var(--blue-soft); color: var(--blue); }
+    .stat-card strong { display: block; font-family: Manrope,sans-serif; font-size: 19px; line-height: 1.3; }
+    .stat-card small { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .podium-grid { display: grid; grid-template-columns: repeat(3,1fr); align-items: end; gap: 15px; margin-top: 28px; }
+    .podium-card { position: relative; min-height: 197px; overflow: hidden; padding: 22px 21px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(145deg, #0d1b30, #08111e); transition: border-color .2s, transform .2s; }
+    .podium-card:hover { transform: translateY(-4px); border-color: rgba(46,124,246,.5); }
+    .podium-card.rank-1 { grid-column: 2; grid-row: 1; min-height: 226px; border-color: rgba(46,124,246,.58); background: linear-gradient(145deg, #102447, #08111e); box-shadow: 0 0 32px rgba(46,124,246,.09); }
+    .podium-card.rank-2 { grid-column: 1; grid-row: 1; }
+    .podium-card.rank-3 { grid-column: 3; grid-row: 1; }
+    .podium-place { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 18px; color: #c6d1df; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .rank-1 .podium-place { color: #8bb5ff; }
+    .podium-card h3 { margin: 0 0 3px; font-size: 16px; }
+    .podium-brand { color: var(--muted); font-size: 11px; }
+    .podium-speed { margin-top: 14px; color: #fff; font-family: Manrope,sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+    .podium-speed span { margin-left: 4px; color: #9ca8b8; font-family: "DM Sans",sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0; }
+    .podium-bar { position: absolute; right: 0; bottom: 0; left: 0; height: 4px; background: linear-gradient(90deg, #2E7CF6, #9dc1ff); }
+    .car-dialog { width: min(660px, calc(100% - 28px)); max-height: min(90vh, 800px); padding: 0; overflow: auto; border: 1px solid rgba(46,124,246,.46); border-radius: 20px; background: #0A1628; color: white; box-shadow: 0 24px 90px rgba(0,0,0,.65), 0 0 40px rgba(46,124,246,.1); }
+    .car-dialog::backdrop { background: rgba(0,0,0,.78); backdrop-filter: blur(7px); }
+    .dialog-image-wrap { position: relative; height: 270px; overflow: hidden; background: #05070a; }
+    .dialog-image { width: 100%; height: 100%; object-fit: cover; }
+    .dialog-close { position: absolute; top: 13px; right: 13px; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; background: rgba(10,10,10,.82); color: white; font-size: 22px; cursor: pointer; }
+    .dialog-content { padding: 24px; }
+    .dialog-eyebrow { color: #8bb5ff; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+    .dialog-content h2 { margin: 7px 0 8px; font-size: clamp(24px,5vw,34px); letter-spacing: -.06em; }
+    .dialog-description { max-width: 570px; margin-bottom: 20px; color: #b1bac8; font-size: 13px; line-height: 1.75; }
+    .dialog-specs { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .dialog-spec { padding: 13px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.025); }
+    .dialog-spec strong { display: block; font-family: Manrope,sans-serif; font-size: 17px; }
+    .dialog-spec span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .dialog-price { margin: 18px 0 0; color: #8bb5ff; font-size: 15px; font-weight: 700; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+
+    @media (max-width: 850px) {
+      .hero { min-height: 560px; padding: 66px 0 92px; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr); }
+      .hero-copy { max-width: 530px; }
+      .car-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .quiz-layout { grid-template-columns: 1fr; gap: 28px; }
+      .quiz-intro { position: static; }
+      .quiz-intro p { max-width: 530px; }
+      .podium-card { padding-inline: 16px; }
+      .race-lane { grid-template-columns: minmax(100px, 145px) minmax(0, 1fr) 56px; gap: 10px; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 32px, var(--content)); }
+      .nav { min-height: 65px; }
+      .nav-links { gap: 15px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-cta { padding: 8px 10px; font-size: 11px; }
+      .hero { min-height: 590px; padding: 56px 0 92px; }
+      .hero::before { background: linear-gradient(90deg, rgba(5,7,10,.72), rgba(5,7,10,.48)), linear-gradient(0deg, #05070A 0%, rgba(5,7,10,.55) 27%, rgba(5,7,10,.18) 72%, rgba(5,7,10,.42)); }
+      .hero h1 { font-size: clamp(49px, 14vw, 76px); }
+      .hero-copy { font-size: 14px; }
+      .section { padding: 69px 0; }
+      .section-heading { align-items: start; }
+      .section-heading p { font-size: 12px; }
+      .section-index { display: none; }
+      .gallery-tools { flex-wrap: wrap; }
+      .search-wrap { flex: 1 1 100%; max-width: none; }
+      .filter-select { flex: 1; }
+      .result-count { margin-left: 0; }
+      .car-grid { grid-template-columns: 1fr; gap: 13px; }
+      .car-photo { height: 205px; }
+      .stats-strip { gap: 7px; }
+      .stat-card { min-height: 100px; align-items: flex-start; flex-direction: column; gap: 8px; padding: 11px; }
+      .stat-icon { width: 30px; height: 30px; flex-basis: 30px; border-radius: 9px; font-size: 13px; }
+      .stat-card strong { font-size: 14px; }
+      .stat-card small { font-size: 8px; }
+      .podium-grid { grid-template-columns: 1fr; align-items: stretch; gap: 10px; }
+      .podium-card, .podium-card.rank-1 { min-height: 0; padding: 16px; }
+      .podium-card.rank-1, .podium-card.rank-2, .podium-card.rank-3 { grid-column: 1; grid-row: auto; }
+      .podium-place { margin-bottom: 9px; }
+      .podium-speed { margin-top: 8px; font-size: 24px; }
+      .dialog-image-wrap { height: 205px; }
+      .dialog-content { padding: 19px 16px; }
+      .dialog-specs { gap: 7px; }
+      .dialog-spec { padding: 10px 8px; }
+      .dialog-spec strong { font-size: 14px; }
+      .dialog-spec span { font-size: 8px; }
+      .compare-controls { grid-template-columns: 1fr auto 1fr; gap: 8px; padding: 15px 12px; }
+      .compare-select { padding-inline: 7px; font-size: 11px; }
+      .versus { width: 29px; height: 29px; }
+      .race-controls { gap: 8px; padding: 15px 12px; }
+      .race-track-wrap { gap: 16px; padding: 19px 12px; }
+      .race-lane { grid-template-columns: minmax(78px, 100px) minmax(0, 1fr) 48px; gap: 7px; }
+      .race-car-name { font-size: 10px; }
+      .race-car-time, .race-status { font-size: 9px; }
+      .race-result:not(:empty) { padding: 0 14px 18px; }
+      .compare-table th, .compare-table td { min-width: 125px; padding: 13px 12px; }
+      .compare-table th:first-child, .compare-table td:first-child { min-width: 105px; }
+      .compare-footnote { padding-inline: 13px; }
+      .quiz-card { padding: 18px 14px; }
+      .quiz-card h3 { font-size: 18px; }
+      .share-row { align-items: start; flex-direction: column; }
+      .footer-row { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .typing-credit::after { animation: none; }
+      .hero, .hero::after, .hero-scroll { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="Garaje Deportivo, inicio">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 15.5h18l-1.6-5a2 2 0 0 0-1.9-1.4H6.5a2 2 0 0 0-1.9 1.4L3 15.5Zm0 0v3h2v-1.7h14v1.7h2v-3M7 15.5h.01M17 15.5h.01M7 9.1l1-2.6h8l1 2.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Garaje Deportivo
+      </a>
+      <div class="nav-links">
+        <a href="#galeria">Galería</a>
+        <a href="#top-rapidos">Top rápidos</a>
+        <a href="#comparador">Comparador</a>
+        <a href="#simulador">Carrera</a>
+        <a href="#quiz">Quiz</a>
+        <a class="nav-cta" href="#galeria">Explorar autos <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <p class="typing-credit" aria-label="Created by Aaron y Fabio"><span id="typing-text" aria-hidden="true">Created by Aaron y Fabio</span></p>
+          <span class="eyebrow">Ingeniería que emociona</span>
+          <h1>Potencia con <span>propósito.</span></h1>
+          <p class="hero-copy">Un espacio para descubrir los deportivos que convierten cada trayecto en algo extraordinario. Explora sus cifras, compáralos y encuentra tu próximo favorito.</p>
+          <a class="button-primary" href="#galeria">
+            Explorar colección
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="hero-note"><span></span> Catorce máquinas. Una pasión sin límites.</div>
+        </div>
+      </div>
+      <a class="hero-scroll" href="#galeria" aria-label="Desplazarse a la galería">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="eyebrow">La colección</span><h2>Hechos para sentir.</h2><p>Catorce referentes del alto rendimiento. Encuentra sus especificaciones y descubre cuál va contigo.</p></div>
+          <span class="section-index">01 / 03</span>
+        </div>
+        <div class="stats-strip reveal" id="car-stats" aria-label="Estadísticas de la colección"></div>
+        <div class="gallery-tools reveal">
+          <label class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <input id="car-search" type="search" placeholder="Buscar por nombre..." aria-label="Buscar autos por nombre" autocomplete="off">
+          </label>
+          <select class="filter-select" id="brand-filter" aria-label="Filtrar por marca">
+            <option value="all">Todas las marcas</option>
+          </select>
+          <button class="gallery-filter-favorites" id="favorites-filter" type="button" aria-pressed="false" aria-label="Mostrar solo autos favoritos">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.4 8.8c0 4.1-8.4 10-8.4 10s-8.4-5.9-8.4-10A4.4 4.4 0 0 1 12 6.7a4.4 4.4 0 0 1 8.4 2.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            Solo favoritos
+          </button>
+          <span class="result-count" id="result-count" aria-live="polite"></span>
+        </div>
+        <div class="brand-shortcuts" id="brand-shortcuts" aria-label="Filtros rápidos por marca">
+          <span class="brand-shortcuts-label">Filtrar por marca:</span>
+          <button class="brand-chip" type="button" data-brand-filter="all" aria-pressed="true">Todas</button>
+          <button class="brand-chip" type="button" data-brand-filter="BMW" aria-pressed="false">BMW</button>
+          <button class="brand-chip" type="button" data-brand-filter="Porsche" aria-pressed="false">Porsche</button>
+          <button class="brand-chip" type="button" data-brand-filter="Audi" aria-pressed="false">Audi</button>
+          <button class="brand-chip" type="button" data-brand-filter="Mercedes-AMG" aria-pressed="false">Mercedes-AMG</button>
+          <button class="brand-chip" type="button" data-brand-filter="Nissan" aria-pressed="false">Nissan</button>
+          <button class="brand-chip" type="button" data-brand-filter="Lamborghini" aria-pressed="false">Lamborghini</button>
+          <button class="brand-chip" type="button" data-brand-filter="Ferrari" aria-pressed="false">Ferrari</button>
+          <button class="brand-chip" type="button" data-brand-filter="Chevrolet" aria-pressed="false">Chevrolet</button>
+          <button class="brand-chip" type="button" data-brand-filter="Ford" aria-pressed="false">Ford</button>
+          <button class="brand-chip" type="button" data-brand-filter="McLaren" aria-pressed="false">McLaren</button>
+          <button class="brand-chip" type="button" data-brand-filter="Bugatti" aria-pressed="false">Bugatti</button>
+          <button class="brand-chip" type="button" data-brand-filter="Toyota" aria-pressed="false">Toyota</button>
+        </div>
+        <div class="car-grid" id="car-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="top-rapidos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="eyebrow">Velocidad pura</span><h2>Top 3 más rápidos.</h2><p>El podio de velocidad máxima de nuestra colección.</p></div>
+          <span class="section-index">RANKING</span>
+        </div>
+        <div class="podium-grid reveal" id="speed-podium" aria-label="Podio de autos más rápidos"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="comparador">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="eyebrow">Cara a cara</span><h2>Que hablen los números.</h2><p>Elige dos modelos y compara lo que importa. El azul señala la ventaja en cada categoría.</p></div>
+          <span class="section-index">02 / 03</span>
+        </div>
+        <div class="compare-panel reveal reveal-delay-1">
+          <div class="compare-controls">
+            <div class="compare-control"><label for="compare-one">Primer auto</label><select class="compare-select" id="compare-one" aria-label="Primer auto para comparar"></select></div>
+            <span class="versus" aria-hidden="true">VS</span>
+            <div class="compare-control"><label for="compare-two">Segundo auto</label><select class="compare-select" id="compare-two" aria-label="Segundo auto para comparar"></select></div>
+            <button class="button-secondary compare-random" id="compare-random" type="button">Versus aleatorio</button>
+          </div>
+          <div class="table-scroll">
+            <table class="compare-table" aria-label="Comparación de especificaciones">
+              <thead id="compare-head"></thead>
+              <tbody id="compare-body"></tbody>
+            </table>
+          </div>
+          <p class="compare-footnote">* Cifras aproximadas; las especificaciones pueden variar según el año, la versión y el mercado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="simulador">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="eyebrow">Drag race</span><h2>Simulador de carrera.</h2><p>Elige dos autos y descubre quién llega primero a 100 km/h.</p></div>
+          <span class="section-index">03 / 03</span>
+        </div>
+        <div class="race-panel reveal reveal-delay-1" id="race-panel">
+          <div class="race-controls">
+            <div class="race-control"><label for="race-one">Primer auto</label><select class="compare-select race-select" id="race-one" aria-label="Primer auto de la carrera"></select></div>
+            <span class="versus race-vs" aria-hidden="true">VS</span>
+            <div class="race-control"><label for="race-two">Segundo auto</label><select class="compare-select race-select" id="race-two" aria-label="Segundo auto de la carrera"></select></div>
+            <button class="button-primary race-start" id="race-start" type="button">¡A correr!</button>
+          </div>
+          <div class="race-track-wrap" id="race-tracks">
+            <div class="race-lane" data-race-lane="one">
+              <div class="race-car-name"><span id="race-name-one">Auto 1</span><span class="race-car-time" id="race-time-one"></span></div>
+              <div class="race-track"><div class="race-progress" id="race-progress-one"></div><span class="race-finish-line" aria-hidden="true"></span></div>
+              <span class="race-status" id="race-status-one"></span>
+            </div>
+            <div class="race-lane" data-race-lane="two">
+              <div class="race-car-name"><span id="race-name-two">Auto 2</span><span class="race-car-time" id="race-time-two"></span></div>
+              <div class="race-track"><div class="race-progress" id="race-progress-two"></div><span class="race-finish-line" aria-hidden="true"></span></div>
+              <span class="race-status" id="race-status-two"></span>
+            </div>
+          </div>
+          <div class="race-result" id="race-result" aria-live="assertive"></div>
+          <button class="button-secondary race-again" id="race-again" type="button">Cambiar autos y correr de nuevo</button>
+          <div id="race-confetti" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quiz">
+      <div class="container quiz-layout">
+        <div class="quiz-intro reveal">
+          <span class="eyebrow">Pon a prueba tu pasión</span>
+          <h2>¿Cuánto sabes de deportivos?</h2>
+          <p>Quince preguntas, sin cronómetro. Demuestra que las cifras y las leyendas del asfalto no tienen secretos para ti.</p>
+          <div class="quiz-best">Tu mejor puntaje <strong id="best-score">— / 15</strong></div>
+        </div>
+        <div class="quiz-card reveal reveal-delay-1" id="quiz-card" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="share-band">
+    <div class="container share-row">
+      <div><h2>¿Conoces a alguien que viviría aquí?</h2><p>Comparte la pasión por los deportivos.</p></div>
+      <a class="button-secondary whatsapp" id="whatsapp-share" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.2 11.7a8.3 8.3 0 0 1-12.3 7.2L3 20l1.2-4.7a8.3 8.3 0 1 1 16-3.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.2 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4-.1.6.4.7 1 1.3 1.6 1.7.6.4 1.1.6 1.4.7.2.1.4 0 .6-.2l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.2.1.4.2.4.4.1.3-.1 1.1-.6 1.6-.5.5-1.1.7-1.8.7-.8 0-2-.4-3.4-1.2-1.7-1-2.8-2.8-3.1-3.3-.3-.5-.8-1.5-.8-2.5 0-1 .5-1.7.8-2Z" fill="currentColor"/></svg>
+        Compartir por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-row"><span class="footer-brand">Garaje Deportivo</span><span>Datos orientativos · Conduce siempre con responsabilidad.</span><span class="footer-credit">Hecho por Fabio y Aaron con <strong>🐒 Cripto Chango</strong></span><span>© <span id="current-year"></span></span></div>
+  </footer>
+
+  <dialog class="car-dialog" id="car-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-image-wrap">
+      <img class="dialog-image" id="dialog-image" src="" alt="">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Cerrar detalles">&times;</button>
+    </div>
+    <div class="dialog-content" id="dialog-content"></div>
+  </dialog>
+
+  <script>
+    "use strict";
+
+    const cars = [
+      {
+        id: "m3", name: "BMW M3 Competition", brand: "BMW", detail: "Sedán deportivo · 2024",
+        hp: 510, acceleration: 3.0, speed: 350, price: 118000,
+        image: "https://www.team-bhp.com/sites/default/files/pictures2021/0%20Initial.JPG",
+        alt: "BMW M3 G80 Competition sedán deportivo actual", engine: "3.0 L biturbo · 6 cilindros en línea",
+        description: "Un sedán de alto rendimiento que combina precisión alemana, tracción integral M xDrive y carácter para el día a día."
+      },
+      {
+        id: "m4", name: "BMW M4 Competition", brand: "BMW", detail: "Coupé deportivo · 2024",
+        hp: 501, acceleration: 3.4, speed: 330, price: 122000,
+        image: "https://images.unsplash.com/photo-1728060838443-691dc6279245?auto=format&fit=crop&w=900&q=80",
+        alt: "BMW M4 G82 Competition coupé deportivo de dos puertas", engine: "3.0 L biturbo · 6 cilindros en línea",
+        description: "La silueta coupé de BMW M con respuesta contundente, chasis afinado para pista y potencia lista para cualquier carretera."
+      },
+      {
+        id: "911", name: "Porsche 911 Carrera", brand: "Porsche", detail: "Coupé deportivo · 2024",
+        hp: 388, acceleration: 4.1, speed: 294, price: 132000,
+        image: "https://images.unsplash.com/photo-1756990683708-afd38ed20f1f?auto=format&fit=crop&w=900&q=80",
+        alt: "Porsche 911 Carrera coupé deportivo de dos puertas", engine: "3.0 L biturbo · 6 cilindros bóxer",
+        description: "Un icono deportivo con motor bóxer trasero, equilibrio extraordinario y una conexión con la carretera que atraviesa generaciones."
+      },
+      {
+        id: "rs5", name: "Audi R8 Coupé", brand: "Audi", detail: "Coupé deportivo · 2024",
+        hp: 444, acceleration: 3.9, speed: 250, price: 79000,
+        image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=900&q=80",
+        alt: "Audi R8 coupé deportivo de dos puertas", engine: "2.9 L biturbo · V6",
+        description: "Diseño elegante y rendimiento RS se unen en un gran turismo con tracción quattro y un carácter deportivo para todo clima."
+      },
+      {
+        id: "c63", name: "Mercedes-AMG C 63 S", brand: "Mercedes-AMG", detail: "Sedán deportivo · 2024",
+        hp: 671, acceleration: 3.4, speed: 280, price: 85000,
+        image: "https://images.unsplash.com/photo-1696294698346-a792de6be3bd?auto=format&fit=crop&w=900&q=80",
+        alt: "Mercedes-AMG C 63 deportivo negro", engine: "2.0 L turbo híbrido · 4 cilindros",
+        description: "Tecnología híbrida de competición y puesta a punto AMG llevan a este sedán a una potencia sorprendente."
+      },
+      {
+        id: "gtr", name: "Nissan GT-R", brand: "Nissan", detail: "Coupé deportivo · 2024",
+        hp: 565, acceleration: 2.7, speed: 315, price: 122000,
+        image: "https://images.unsplash.com/photo-1661452581692-2ac961ec6a87?auto=format&fit=crop&w=900&q=80",
+        alt: "Nissan GT-R R35 coupé deportivo en pista", engine: "3.8 L biturbo · V6",
+        description: "El legendario GT-R combina un V6 biturbo ensamblado a mano y tracción integral para un rendimiento imponente."
+      },
+      {
+        id: "huracan", name: "Lamborghini Huracán", brand: "Lamborghini", detail: "Coupé superdeportivo · 2024",
+        hp: 631, acceleration: 2.9, speed: 325, price: 250000,
+        image: "https://images.unsplash.com/photo-1612825173281-9a193378527e?auto=format&fit=crop&w=900&q=80",
+        alt: "Lamborghini Huracán coupé superdeportivo naranja", engine: "5.2 L atmosférico · V10",
+        description: "Un superdeportivo italiano de motor V10 atmosférico, sonido inconfundible y un diseño que parece esculpido por el viento."
+      },
+      {
+        id: "ferrari488", name: "Ferrari 488 GTB", brand: "Ferrari", detail: "Coupé superdeportivo · 2020",
+        hp: 661, acceleration: 3.0, speed: 330, price: 250000,
+        image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=900&q=80",
+        alt: "Deportivo italiano rojo de altas prestaciones", engine: "3.9 L biturbo · V8",
+        description: "La 488 GTB canaliza décadas de experiencia en pista en un V8 biturbo de respuesta explosiva y aerodinámica avanzada."
+      },
+      {
+        id: "corvette", name: "Chevrolet Corvette Stingray", brand: "Chevrolet", detail: "Coupé deportivo · 2024",
+        hp: 495, acceleration: 2.9, speed: 312, price: 70000,
+        image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80",
+        alt: "Coupé deportivo americano de diseño agresivo", engine: "6.2 L atmosférico · V8",
+        description: "El Corvette de motor central combina la tradición del V8 americano con una arquitectura moderna y un rendimiento sorprendente."
+      },
+      {
+        id: "mustang", name: "Ford Mustang GT", brand: "Ford", detail: "Coupé deportivo · 2024",
+        hp: 486, acceleration: 4.3, speed: 250, price: 43000,
+        image: "https://images.unsplash.com/photo-1547744152-14d985cb937f?auto=format&fit=crop&w=900&q=80",
+        alt: "Ford Mustang GT moderno coupé deportivo", engine: "5.0 L atmosférico · V8",
+        description: "Un clásico americano con motor Coyote V8, tracción trasera y una personalidad que no necesita presentación."
+      },
+      {
+        id: "gt3rs", name: "Porsche 911 GT3 RS", brand: "Porsche", detail: "Coupé deportivo · 2024",
+        hp: 518, acceleration: 3.2, speed: 296, price: 241000,
+        image: "https://images.unsplash.com/photo-1759001462231-cd26545a499e?auto=format&fit=crop&w=900&q=80",
+        alt: "Porsche 911 GT3 RS blanco con alerón trasero grande y llantas rojas",
+        engine: "4.0 L atmosférico · 6 cilindros bóxer",
+        description: "Un 911 enfocado en circuito, con aerodinámica activa, un gran alerón trasero y un motor bóxer atmosférico de altas revoluciones."
+      },
+      {
+        id: "mclaren720s", name: "McLaren 720S", brand: "McLaren", detail: "Coupé superdeportivo · 2023",
+        hp: 710, acceleration: 2.9, speed: 341, price: 300000,
+        image: "https://images.unsplash.com/photo-1759189502102-cebbb4704d22?auto=format&fit=crop&w=900&q=80",
+        alt: "McLaren 720S amarillo, coupé superdeportivo de motor central",
+        engine: "4.0 L biturbo · V8",
+        description: "Un superdeportivo ligero de motor central que combina un V8 biturbo con una aerodinámica distintiva y una aceleración contundente."
+      },
+      {
+        id: "chiron", name: "Bugatti Chiron", brand: "Bugatti", detail: "Coupé hiperdeportivo · 2024",
+        hp: 1500, acceleration: 2.4, speed: 420, price: 3000000,
+        image: "https://images.unsplash.com/photo-1627454820516-dc767bcb4d3e?auto=format&fit=crop&w=900&q=80",
+        alt: "Bugatti Chiron blanco, hiperdeportivo con parrilla en forma de herradura",
+        engine: "8.0 L quad-turbo · W16",
+        description: "El hiperdeportivo francés combina un motor W16 de cuatro turbocompresores con una carrocería diseñada para alcanzar velocidades extremas."
+      },
+      {
+        id: "grsupra", name: "Toyota GR Supra", brand: "Toyota", detail: "Coupé deportivo · 2024",
+        hp: 382, acceleration: 3.9, speed: 250, price: 56000,
+        image: "https://images.unsplash.com/photo-1779725201811-8a647087f32b?auto=format&fit=crop&w=900&q=80",
+        alt: "Toyota GR Supra moderno blanco de dos puertas",
+        engine: "3.0 L turbo · 6 cilindros en línea",
+        description: "El GR Supra moderno reúne proporciones de coupé clásico, tracción trasera y un motor turbo de seis cilindros en línea."
+      }
+    ];
+
+    const questions = [
+      { question: "¿Cuántos caballos de fuerza tiene el BMW M3 Competition?", options: ["473 HP", "510 HP", "550 HP", "444 HP"], answer: 1, explanation: "Su motor de seis cilindros en línea entrega 510 HP." },
+      { question: "¿Qué marca fabrica el GT-R?", options: ["Toyota", "Honda", "Nissan", "Subaru"], answer: 2, explanation: "El GT-R es el deportivo insignia de Nissan." },
+      { question: "¿Qué significa la sigla RS en los deportivos de Audi?", options: ["Racing Sport", "Road Series", "Rally Special", "Rear Sport"], answer: 0, explanation: "RS viene de RennSport, que significa deporte de competición en alemán." },
+      { question: "¿Cuál de estos modelos tiene motor trasero?", options: ["BMW M4", "Audi R8", "Porsche 911 Carrera", "Mercedes-AMG C 63 S"], answer: 2, explanation: "El Porsche 911 conserva su característica configuración de motor trasero." },
+      { question: "¿Cuántos cilindros tiene el motor del Nissan GT-R?", options: ["4 cilindros", "6 cilindros en V", "8 cilindros en V", "6 cilindros en línea"], answer: 1, explanation: "El GT-R utiliza un motor V6 biturbo de 3.8 litros." },
+      { question: "¿Qué división de alto rendimiento pertenece a Mercedes-Benz?", options: ["M Performance", "AMG", "Quattro", "Nismo"], answer: 1, explanation: "AMG es la división de altas prestaciones de Mercedes-Benz." },
+      { question: "¿Aproximadamente cuánto tarda el BMW M3 Competition en acelerar de 0 a 100 km/h?", options: ["2.7 segundos", "3.5 segundos", "4.5 segundos", "5.1 segundos"], answer: 1, explanation: "El M3 Competition alcanza los 100 km/h en aproximadamente 3.5 segundos." },
+      { question: "¿Qué fabricante tiene su sede histórica en Stuttgart, Alemania?", options: ["Nissan", "Audi", "BMW", "Porsche"], answer: 3, explanation: "Porsche fue fundada en Stuttgart, donde mantiene su sede." },
+      { question: "¿Qué tipo de motor impulsa al Lamborghini Huracán?", options: ["V6 biturbo", "V8 híbrido", "V10 atmosférico", "V12 biturbo"], answer: 2, explanation: "El Huracán es famoso por su motor V10 atmosférico de 5.2 litros." },
+      { question: "¿Cuántos caballos de fuerza desarrolla el Ferrari 488 GTB?", options: ["540 HP", "610 HP", "661 HP", "710 HP"], answer: 2, explanation: "Su motor V8 biturbo produce 661 HP." },
+      { question: "¿Qué configuración de motor caracteriza al Corvette Stingray de motor central?", options: ["V6 delantero", "V8 central", "V10 trasero", "4 cilindros bóxer"], answer: 1, explanation: "El Corvette Stingray de esta generación monta su V8 detrás de los asientos." },
+      { question: "¿Qué motor equipa el Ford Mustang GT?", options: ["V6 biturbo", "V8 Coyote de 5.0 litros", "V10 atmosférico", "4 cilindros híbrido"], answer: 1, explanation: "El Mustang GT equipa el conocido V8 Coyote atmosférico de 5.0 litros." },
+      { question: "¿Qué elemento aerodinámico destaca en el Porsche 911 GT3 RS?", options: ["Alerón trasero de gran tamaño", "Hélice trasera", "Techo descapotable", "Parrilla delantera activa"], answer: 0, explanation: "El GT3 RS usa un gran alerón trasero y aerodinámica enfocada en circuito." },
+      { question: "¿Cuántos caballos de fuerza desarrolla el Bugatti Chiron?", options: ["710 HP", "1,000 HP", "1,500 HP", "2,000 HP"], answer: 2, explanation: "El motor W16 quad-turbo del Chiron entrega 1,500 HP." },
+      { question: "¿Qué configuración de motor ofrece el Toyota GR Supra moderno?", options: ["V8 atmosférico", "Seis cilindros en línea turbo", "V6 híbrido", "Cuatro cilindros bóxer"], answer: 1, explanation: "La versión GR Supra de 3.0 litros utiliza un seis cilindros en línea turbo." }
+    ];
+
+    const moneyFormat = new Intl.NumberFormat("es-ES", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    const carGrid = document.getElementById("car-grid");
+    const brandFilter = document.getElementById("brand-filter");
+    const searchInput = document.getElementById("car-search");
+    const favoritesFilter = document.getElementById("favorites-filter");
+    const favoritesStorageKey = "garaje-deportivo-favorites";
+    const carDialog = document.getElementById("car-dialog");
+    let favoriteIds = readFavoriteIds();
+
+    function renderCars() {
+      const searchTerm = searchInput.value.trim().toLocaleLowerCase("es");
+      const selectedBrand = brandFilter.value;
+      const onlyFavorites = favoritesFilter.getAttribute("aria-pressed") === "true";
+      document.querySelectorAll("[data-brand-filter]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.brandFilter === selectedBrand));
+      });
+      const visibleCars = cars.filter((car) => {
+        const matchesName = car.name.toLocaleLowerCase("es").includes(searchTerm);
+        const matchesBrand = selectedBrand === "all" || car.brand === selectedBrand;
+        const matchesFavorite = !onlyFavorites || favoriteIds.has(car.id);
+        return matchesName && matchesBrand && matchesFavorite;
+      });
+
+      document.getElementById("result-count").textContent = `${visibleCars.length} ${visibleCars.length === 1 ? "auto" : "autos"}`;
+      if (!visibleCars.length) {
+        carGrid.innerHTML = `<div class="empty-state">${onlyFavorites && favoriteIds.size === 0 ? "Aún no tienes favoritos. Toca el corazón de un auto para guardarlo." : "No encontramos autos con esos filtros. Prueba otra búsqueda."}</div>`;
+        return;
+      }
+
+      carGrid.innerHTML = visibleCars.map((car, index) => `
+        <article class="car-card reveal ${index % 3 === 1 ? "reveal-delay-1" : index % 3 === 2 ? "reveal-delay-2" : ""}">
+          <button class="car-open" type="button" data-car-id="${car.id}" aria-label="Ver detalles de ${car.name}">
+            <div class="car-photo">
+              <img src="${car.image}" alt="${car.alt}" loading="lazy">
+              <span class="car-brand">${car.brand}</span>
+            </div>
+            <div class="car-card-body">
+              <div class="car-title-row"><h3>${car.name}</h3><span class="price">${moneyFormat.format(car.price)}</span></div>
+              <p class="car-subtitle">${car.detail}</p>
+              <div class="car-specs">
+                <div><strong>${car.hp}</strong><span>HP</span></div>
+                <div><strong>${car.acceleration.toFixed(1)} s</strong><span>0–100 km/h</span></div>
+                <div><strong>${car.speed}</strong><span>km/h máx.</span></div>
+              </div>
+            </div>
+          </button>
+          <button class="favorite-button" type="button" data-favorite-id="${car.id}" aria-pressed="${favoriteIds.has(car.id)}" aria-label="${favoriteIds.has(car.id) ? "Quitar de favoritos" : "Agregar a favoritos"}: ${car.name}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 8.8c0 4.1-8.4 10-8.4 10s-8.4-5.9-8.4-10A4.4 4.4 0 0 1 12 6.7a4.4 4.4 0 0 1 8.4 2.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </button>
+        </article>`).join("");
+      observeReveals(carGrid);
+    }
+
+    function renderCollectionStats() {
+      const mostPowerful = cars.reduce((best, car) => car.hp > best.hp ? car : best);
+      const fastest = cars.reduce((best, car) => car.speed > best.speed ? car : best);
+      document.getElementById("car-stats").innerHTML = `
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">✦</span><div><strong>${cars.length}</strong><small>deportivos en la colección</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">↗</span><div><strong>${mostPowerful.hp} HP</strong><small>más potente · ${mostPowerful.name}</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">⚡</span><div><strong>${fastest.speed} km/h</strong><small>más rápido · ${fastest.name}</small></div></article>`;
+    }
+
+    function renderSpeedPodium() {
+      const topCars = [...cars].sort((a, b) => b.speed - a.speed || a.name.localeCompare(b.name)).slice(0, 3);
+      document.getElementById("speed-podium").innerHTML = topCars.map((car, index) => {
+        const place = index + 1;
+        const ordinal = place === 1 ? "1er lugar" : place === 2 ? "2do lugar" : "3er lugar";
+        return `<article class="podium-card rank-${place}">
+          <div class="podium-place"><span aria-hidden="true">${place === 1 ? "◆" : "◇"}</span>${ordinal}</div>
+          <h3>${car.name}</h3><span class="podium-brand">${car.brand}</span>
+          <div class="podium-speed">${car.speed}<span>km/h máx.</span></div><div class="podium-bar" aria-hidden="true"></div>
+        </article>`;
+      }).join("");
+    }
+
+    function readFavoriteIds() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(favoritesStorageKey) || "[]");
+        return new Set(Array.isArray(stored) ? stored.filter((id) => cars.some((car) => car.id === id)) : []);
+      } catch (error) {
+        console.warn("No se pudieron leer los favoritos guardados.", error);
+        return new Set();
+      }
+    }
+
+    function toggleFavorite(carId) {
+      if (favoriteIds.has(carId)) favoriteIds.delete(carId);
+      else favoriteIds.add(carId);
+      try {
+        localStorage.setItem(favoritesStorageKey, JSON.stringify([...favoriteIds]));
+      } catch (error) {
+        console.warn("No se pudieron guardar los favoritos en este navegador.", error);
+      }
+      renderCars();
+    }
+
+    function openCarDetails(carId) {
+      const car = cars.find((item) => item.id === carId);
+      if (!car) return;
+      const image = document.getElementById("dialog-image");
+      image.src = car.image;
+      image.alt = car.alt;
+      document.getElementById("dialog-content").innerHTML = `
+        <span class="dialog-eyebrow">${car.brand} · ${car.detail}</span>
+        <h2 id="dialog-title">${car.name}</h2>
+        <p class="dialog-description">${car.description}</p>
+        <div class="dialog-specs">
+          <div class="dialog-spec"><strong>${car.hp} HP</strong><span>Potencia</span></div>
+          <div class="dialog-spec"><strong>${car.acceleration.toFixed(1)} s</strong><span>0–100 km/h</span></div>
+          <div class="dialog-spec"><strong>${car.speed} km/h</strong><span>Velocidad máxima</span></div>
+          <div class="dialog-spec"><strong>${car.engine}</strong><span>Motor</span></div>
+          <div class="dialog-spec"><strong>${car.detail.split(" · ")[0]}</strong><span>Carrocería</span></div>
+          <div class="dialog-spec"><strong>${car.detail.split(" · ")[1]}</strong><span>Modelo</span></div>
+        </div>
+        <p class="dialog-price">Precio aproximado · ${moneyFormat.format(car.price)}</p>`;
+      carDialog.showModal();
+    }
+
+    function setupGallery() {
+      [...new Set(cars.map((car) => car.brand))].sort((a, b) => a.localeCompare(b, "es")).forEach((brand) => {
+        const option = document.createElement("option");
+        option.value = brand;
+        option.textContent = brand;
+        brandFilter.append(option);
+      });
+      searchInput.addEventListener("input", renderCars);
+      brandFilter.addEventListener("change", renderCars);
+      document.getElementById("brand-shortcuts").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-brand-filter]");
+        if (!button) return;
+        brandFilter.value = button.dataset.brandFilter;
+        renderCars();
+      });
+      favoritesFilter.addEventListener("click", () => {
+        const isPressed = favoritesFilter.getAttribute("aria-pressed") === "true";
+        favoritesFilter.setAttribute("aria-pressed", String(!isPressed));
+        renderCars();
+      });
+      carGrid.addEventListener("click", (event) => {
+        const favoriteButton = event.target.closest("[data-favorite-id]");
+        if (favoriteButton) {
+          toggleFavorite(favoriteButton.dataset.favoriteId);
+          return;
+        }
+        const openButton = event.target.closest("[data-car-id]");
+        if (openButton) openCarDetails(openButton.dataset.carId);
+      });
+      document.getElementById("dialog-close").addEventListener("click", () => carDialog.close());
+      carDialog.addEventListener("click", (event) => {
+        if (event.target === carDialog) carDialog.close();
+      });
+      renderCollectionStats();
+      renderSpeedPodium();
+      renderCars();
+    }
+
+    function setupComparison() {
+      const firstSelect = document.getElementById("compare-one");
+      const secondSelect = document.getElementById("compare-two");
+      cars.forEach((car) => {
+        [firstSelect, secondSelect].forEach((select) => {
+          const option = document.createElement("option");
+          option.value = car.id;
+          option.textContent = car.name;
+          select.append(option);
+        });
+      });
+      secondSelect.value = "911";
+
+      function renderComparison() {
+        const first = cars.find((car) => car.id === firstSelect.value);
+        const second = cars.find((car) => car.id === secondSelect.value);
+        if (!first || !second) return;
+
+        document.getElementById("compare-head").innerHTML =
+          `<tr><th scope="col">Especificación</th><th scope="col">${first.name}</th><th scope="col">${second.name}</th></tr>`;
+
+        const metrics = [
+          { key: "hp", label: "Potencia", unit: "HP", better: "higher", format: (value) => `${value} HP` },
+          { key: "acceleration", label: "0–100 km/h", unit: "s", better: "lower", format: (value) => `${value.toFixed(1)} s` },
+          { key: "speed", label: "Velocidad máxima", unit: "km/h", better: "higher", format: (value) => `${value} km/h` },
+          { key: "price", label: "Precio aproximado", unit: "", better: "lower", format: (value) => moneyFormat.format(value) }
+        ];
+        document.getElementById("compare-body").innerHTML = metrics.map((metric) => {
+          const a = first[metric.key];
+          const b = second[metric.key];
+          const winner = a === b ? null : metric.better === "higher" ? (a > b ? "a" : "b") : (a < b ? "a" : "b");
+          const max = Math.max(a, b) || 1;
+          const barPercent = (value) => Math.max(5, (value / max) * 100);
+          const cell = (value, side) => `
+            <td>
+              <span class="metric-value ${winner === side ? "winner" : ""}">${metric.format(value)}${winner === side ? '<span class="winner-mark" aria-label="Mejor valor">◆</span>' : ""}</span>
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill ${winner === side ? "winner" : ""}" style="width:${barPercent(value)}%"></div></div>
+            </td>`;
+          return `<tr><td>${metric.label}</td>${cell(a, "a")}${cell(b, "b")}</tr>`;
+        }).join("");
+      }
+
+      firstSelect.addEventListener("change", renderComparison);
+      secondSelect.addEventListener("change", renderComparison);
+      document.getElementById("compare-random").addEventListener("click", () => {
+        const firstIndex = Math.floor(Math.random() * cars.length);
+        let secondIndex;
+        do {
+          secondIndex = Math.floor(Math.random() * cars.length);
+        } while (secondIndex === firstIndex);
+        firstSelect.value = cars[firstIndex].id;
+        secondSelect.value = cars[secondIndex].id;
+        renderComparison();
+      });
+      renderComparison();
+    }
+
+    function setupRaceSimulator() {
+      const racePanel = document.getElementById("race-panel");
+      const firstSelect = document.getElementById("race-one");
+      const secondSelect = document.getElementById("race-two");
+      const startButton = document.getElementById("race-start");
+      const againButton = document.getElementById("race-again");
+      const result = document.getElementById("race-result");
+      const confettiContainer = document.getElementById("race-confetti");
+      const lanes = [
+        { select: firstSelect, name: document.getElementById("race-name-one"), time: document.getElementById("race-time-one"), progress: document.getElementById("race-progress-one"), status: document.getElementById("race-status-one") },
+        { select: secondSelect, name: document.getElementById("race-name-two"), time: document.getElementById("race-time-two"), progress: document.getElementById("race-progress-two"), status: document.getElementById("race-status-two") }
+      ];
+
+      cars.forEach((car) => {
+        [firstSelect, secondSelect].forEach((select) => {
+          const option = document.createElement("option");
+          option.value = car.id;
+          option.textContent = car.name;
+          select.append(option);
+        });
+      });
+      firstSelect.value = "m3";
+      secondSelect.value = "911";
+
+      function updateLane(lane) {
+        const car = cars.find((item) => item.id === lane.select.value);
+        if (!car) return null;
+        lane.name.textContent = car.name;
+        lane.time.textContent = `${car.acceleration.toFixed(1)} s · 0–100 km/h`;
+        lane.progress.style.width = "0%";
+        lane.status.textContent = "Listo";
+        return car;
+      }
+
+      function updateLaneLabels() {
+        lanes.forEach(updateLane);
+      }
+
+      function showConfetti() {
+        const colors = ["#2E7CF6", "#78aaff", "#C0C0C0", "#FFFFFF"];
+        confettiContainer.replaceChildren(...Array.from({ length: 18 }, () => {
+          const piece = document.createElement("span");
+          piece.className = "confetti";
+          piece.style.setProperty("--confetti-x", `${Math.random() * 100}%`);
+          piece.style.setProperty("--confetti-delay", `${Math.random() * .45}s`);
+          piece.style.setProperty("--confetti-drift", `${Math.round((Math.random() - .5) * 120)}px`);
+          piece.style.setProperty("--confetti-rotate", `${Math.round(Math.random() * 720 - 360)}deg`);
+          piece.style.setProperty("--confetti-color", colors[Math.floor(Math.random() * colors.length)]);
+          return piece;
+        }));
+        racePanel.classList.remove("is-finished");
+        void racePanel.offsetWidth;
+        racePanel.classList.add("is-finished");
+      }
+
+      function runRace() {
+        const racers = lanes.map((lane) => ({
+          lane,
+          car: cars.find((item) => item.id === lane.select.value)
+        }));
+        if (racers.some((racer) => !racer.car) || racers[0].car.id === racers[1].car.id) {
+          result.textContent = "Elige dos autos diferentes para iniciar la carrera.";
+          return;
+        }
+
+        racePanel.classList.remove("is-finished");
+        confettiContainer.replaceChildren();
+        result.textContent = "";
+        againButton.disabled = true;
+        startButton.disabled = true;
+        startButton.textContent = "¡Corriendo!";
+        lanes.forEach((lane) => { lane.select.disabled = true; });
+        const durations = racers.map((racer) => racer.car.acceleration * 1000);
+        const raceStart = performance.now();
+
+        function animate(now) {
+          const elapsed = now - raceStart;
+          racers.forEach((racer, index) => {
+            const progress = Math.min(1, elapsed / durations[index]);
+            racer.lane.progress.style.width = `${progress * 100}%`;
+            racer.lane.status.textContent = progress === 1 ? "¡Meta!" : `${Math.floor(progress * 100)}%`;
+          });
+
+          if (elapsed < Math.max(...durations)) {
+            requestAnimationFrame(animate);
+            return;
+          }
+
+          const [first, second] = racers;
+          const winner = first.car.acceleration === second.car.acceleration
+            ? null
+            : first.car.acceleration < second.car.acceleration ? first.car : second.car;
+          result.innerHTML = winner
+            ? `<strong>${winner.name}</strong> gana con un 0–100 km/h de ${winner.acceleration.toFixed(1)} s.`
+            : "¡Empate! Los dos autos registran el mismo tiempo de aceleración.";
+          startButton.disabled = false;
+          startButton.textContent = "¡A correr!";
+          lanes.forEach((lane) => { lane.select.disabled = false; });
+          againButton.disabled = false;
+          showConfetti();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      startButton.addEventListener("click", runRace);
+      againButton.addEventListener("click", () => {
+        const previousIds = new Set([firstSelect.value, secondSelect.value]);
+        const alternatives = cars.filter((car) => !previousIds.has(car.id));
+        const firstIndex = Math.floor(Math.random() * alternatives.length);
+        const firstCar = alternatives.splice(firstIndex, 1)[0];
+        const secondCar = alternatives[Math.floor(Math.random() * alternatives.length)];
+        firstSelect.value = firstCar.id;
+        secondSelect.value = secondCar.id;
+        updateLaneLabels();
+        runRace();
+      });
+      lanes.forEach((lane) => lane.select.addEventListener("change", () => {
+        updateLane(lane);
+        result.textContent = "";
+        racePanel.classList.remove("is-finished");
+        againButton.disabled = false;
+      }));
+      updateLaneLabels();
+    }
+
+    let questionIndex = 0;
+    let score = 0;
+    let hasAnswered = false;
+    const quizCard = document.getElementById("quiz-card");
+
+    function showQuestion() {
+      hasAnswered = false;
+      const current = questions[questionIndex];
+      const letters = ["A", "B", "C", "D"];
+      quizCard.innerHTML = `
+        <div class="quiz-topline"><span>Pregunta ${questionIndex + 1} de ${questions.length}</span><span>${score} ${score === 1 ? "acierto" : "aciertos"}</span></div>
+        <div class="quiz-progress" role="progressbar" aria-label="Progreso del quiz" aria-valuemin="0" aria-valuemax="${questions.length}" aria-valuenow="${questionIndex + 1}">
+          <div class="quiz-progress-fill" style="width:${((questionIndex + 1) / questions.length) * 100}%"></div>
+        </div>
+        <h3>${current.question}</h3>
+        <div class="quiz-options">${current.options.map((option, index) =>
+          `<button class="quiz-option" type="button" data-option="${index}"><span class="option-letter">${letters[index]}</span><span>${option}</span></button>`
+        ).join("")}</div>
+        <p class="quiz-feedback" id="quiz-feedback" aria-live="polite"></p>
+        <div class="quiz-next-row"><button class="quiz-next" id="quiz-next" type="button" disabled>${questionIndex === questions.length - 1 ? "Ver resultado" : "Siguiente pregunta"} →</button></div>`;
+
+      quizCard.querySelectorAll(".quiz-option").forEach((button) => {
+        button.addEventListener("click", () => selectAnswer(Number(button.dataset.option)));
+      });
+      document.getElementById("quiz-next").addEventListener("click", () => {
+        if (!hasAnswered) return;
+        if (questionIndex < questions.length - 1) {
+          questionIndex += 1;
+          showQuestion();
+        } else {
+          showResult();
+        }
+      });
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (hasAnswered) return;
+      hasAnswered = true;
+      const current = questions[questionIndex];
+      const options = quizCard.querySelectorAll(".quiz-option");
+      options.forEach((button, index) => {
+        button.disabled = true;
+        if (index === current.answer) button.classList.add("correct");
+        if (index === selectedIndex && selectedIndex !== current.answer) button.classList.add("incorrect");
+      });
+      if (selectedIndex === current.answer) score += 1;
+      document.getElementById("quiz-feedback").textContent =
+        selectedIndex === current.answer ? `¡Correcto! ${current.explanation}` : `No exactamente. ${current.explanation}`;
+      document.getElementById("quiz-next").disabled = false;
+    }
+
+    function showResult() {
+      const previousBest = readBestScore();
+      const best = Math.max(previousBest, score);
+      try {
+        localStorage.setItem("garaje-deportivo-best-score", String(best));
+      } catch (error) {
+        console.warn("No se pudo guardar el puntaje en este navegador.", error);
+      }
+      updateBestScore(best);
+
+      let title;
+      let message;
+      if (score === questions.length) {
+        title = "¡Leyenda del asfalto!";
+        message = "Perfecto. Conoces cada detalle de estas máquinas.";
+      } else if (score >= 12) {
+        title = "¡Motor experto!";
+        message = "Impresionante. Se nota que los deportivos son lo tuyo.";
+      } else if (score >= 8) {
+        title = "Buen copiloto";
+        message = "Vas por buen camino. Siempre hay algo nuevo que descubrir.";
+      } else {
+        title = "La aventura empieza";
+        message = "Explora la colección y vuelve a intentarlo. ¡Tú puedes!";
+      }
+
+      quizCard.innerHTML = `
+        <div class="quiz-result">
+          <div class="result-score">${score}<span style="font-size:13px;color:#a1a1aa"> / ${questions.length}</span></div>
+          <h3>${title}</h3>
+          <p>${message}</p>
+          <button class="button-primary" type="button" id="quiz-restart">Intentar de nuevo ↻</button>
+        </div>`;
+      document.getElementById("quiz-restart").addEventListener("click", () => {
+        questionIndex = 0;
+        score = 0;
+        showQuestion();
+      });
+    }
+
+    function readBestScore() {
+      try {
+        const stored = Number(localStorage.getItem("garaje-deportivo-best-score"));
+        return Number.isInteger(stored) && stored >= 0 && stored <= questions.length ? stored : 0;
+      } catch (error) {
+        console.warn("No se pudo leer el puntaje guardado.", error);
+        return 0;
+      }
+    }
+
+    function updateBestScore(value) {
+      document.getElementById("best-score").textContent = `${value} / ${questions.length}`;
+    }
+
+    let revealObserver;
+    function observeReveals(root = document) {
+      const elements = root.querySelectorAll(".reveal:not(.is-visible)");
+      if (!("IntersectionObserver" in window)) {
+        elements.forEach((element) => element.classList.add("is-visible"));
+        return;
+      }
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            } else {
+              entry.target.classList.remove("is-visible");
+            }
+          });
+        }, { threshold: 0.12 });
+      }
+      elements.forEach((element) => revealObserver.observe(element));
+    }
+
+    function setupSharing() {
+      const message = "Descubre Garaje Deportivo: galería de deportivos, comparador y quiz. ¡Encuentra tu favorito!";
+      const shareUrl = window.location.protocol === "file:" ? "" : window.location.href;
+      document.getElementById("whatsapp-share").href =
+        `https://wa.me/?text=${encodeURIComponent(`${message}${shareUrl ? ` ${shareUrl}` : ""}`)}`;
+    }
+
+    function setupTypingCredit() {
+      const credit = document.getElementById("typing-text");
+      const text = "Created by Aaron y Fabio";
+      if (!credit || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      let index = 0;
+      credit.textContent = "";
+      const typeNextCharacter = () => {
+        if (index < text.length) {
+          credit.textContent = text.slice(0, ++index);
+          window.setTimeout(typeNextCharacter, 90);
+          return;
+        }
+        window.setTimeout(() => {
+          index = 0;
+          credit.textContent = "";
+          typeNextCharacter();
+        }, 1600);
+      };
+      typeNextCharacter();
+    }
+
+    setupGallery();
+    setupComparison();
+    setupRaceSimulator();
+    showQuestion();
+    updateBestScore(readBestScore());
+    setupSharing();
+    setupTypingCredit();
+    observeReveals();
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
